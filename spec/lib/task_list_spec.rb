@@ -20,4 +20,15 @@ RSpec.describe TaskList do
     subject.add_task(task)
     expect(subject.tasks).to eq([task])
   end
+
+  it "equality is based on state" do
+    subject = TaskList.new("Example Title", "Example Description")
+    other_subject = TaskList.new("Example Title", "Example Description")
+    task = instance_double("task")
+
+    subject.add_task(task)
+    other_subject.add_task(task)
+
+    expect(subject).to eq(other_subject)
+  end
 end

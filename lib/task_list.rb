@@ -12,4 +12,11 @@ class TaskList
     @tasks << task
   end
 
+  def ==(other)
+    other.is_a?(TaskList) &&
+      @title == other.title &&
+      @description == other.description &&
+      @tasks == other.tasks
+  end
+
 end
