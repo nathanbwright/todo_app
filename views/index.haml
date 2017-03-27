@@ -1,0 +1,10 @@
+%html
+  %head
+    %title Todo List
+  %body
+    %h1 Todo List
+    = foo
+    %form{:method => "post", :action => "/new-todo"}
+      %input{:type => "text", :name =>"todo", :placeholder => "todo title"}
+      %input{:type => "submit"}
+

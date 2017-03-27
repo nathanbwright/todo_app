@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
 gem "sinatra", github: "sinatra/sinatra"
+gem "haml"
 
 group :development, :test do
   gem "rspec", "~> 3.5"
