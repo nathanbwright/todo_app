@@ -1,3 +1,5 @@
+require_relative "./task"
+
 class TaskList
   attr_accessor :title, :description
   attr_reader :tasks
@@ -8,8 +10,8 @@ class TaskList
     @tasks = []
   end
 
-  def add_task(task)
-    @tasks << task
+  def add_task(task_title)
+    @tasks << Task.new(task_title)
   end
 
   def ==(other)

@@ -13,21 +13,19 @@ RSpec.describe TaskList do
     expect(subject.description).to eq("Example Description")
   end
 
-  it "can hold tasks" do
+  it "automatically creates Task objects" do
     subject = TaskList.new("Example Title")
-    task = instance_double("task")
 
-    subject.add_task(task)
-    expect(subject.tasks).to eq([task])
+    subject.add_task("Example Task")
+    expect(subject.tasks.first.title).to eq("Example Task")
   end
 
   it "equality is based on state" do
     subject = TaskList.new("Example Title", "Example Description")
     other_subject = TaskList.new("Example Title", "Example Description")
-    task = instance_double("task")
 
-    subject.add_task(task)
-    other_subject.add_task(task)
+    subject.add_task("Example")
+    other_subject.add_task("Example")
 
     expect(subject).to eq(other_subject)
   end
