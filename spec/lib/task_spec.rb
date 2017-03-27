@@ -16,8 +16,15 @@ RSpec.describe Task do
   it "can be completed" do
     subject = Task.new("Example Task")
 
-    subject.complete
+    subject.done
 
     expect(subject.completed?).to be true
+  end
+
+  it "equality is based on state" do
+    subject = Task.new("Example Title")
+    other_subject = Task.new("Example Title")
+
+    expect(subject).to eq(other_subject)
   end
 end
