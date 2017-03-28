@@ -7,8 +7,8 @@ class Task
     @id = id
   end
 
-  def done
-    @complete = true
+  def toggle_completed
+    @complete = !@complete
   end
 
   def completed?

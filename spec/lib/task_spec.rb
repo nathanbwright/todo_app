@@ -15,10 +15,12 @@ RSpec.describe Task do
     expect(subject.completed?).to be false
   end
 
-  it "can be completed" do
-    subject.done
-
+  it "can be completed and uncompleted" do
+    subject.toggle_completed
     expect(subject.completed?).to be true
+
+    subject.toggle_completed
+    expect(subject.completed?).to be false
   end
 
   it "equality is based on state" do
