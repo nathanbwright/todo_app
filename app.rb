@@ -20,3 +20,8 @@ post "/toggle_complete/:id" do
   task_app.toggle_completed(params[:id])
   redirect back
 end
+
+post "/delete/:id" do
+  task_app.delete(params[:id])
+  redirect back
+end

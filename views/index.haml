@@ -5,15 +5,17 @@
   %body
     %h1= task_list_title
     - task_list.each do |task|
-      %div{:class => "#{task.completed?}"}
+      %div
         %form{:method => "post", :action => "/toggle_complete/#{task.id}", :style => "display: inline;"}
+          = task.completed? ? "&check;" : ""
+          %span{:class => "#{task.completed?}"} #{task.title}
           - case task.completed?
           - when true
-            %span &check; #{task.title}
             %input{:type => "submit", :value => "Mark unDone"}
           - when false
-            %span #{task.title}
             %input{:type => "submit", :value => "Mark Done"}
+        %form{:method => "post", :action => "/delete/#{task.id}", :style => "display: inline;"}
+          %input{:type => "submit", :value => "Delete"}
     %br
     %form{:method => "post", :action => "/new-todo"}
       %input{:type => "text", :name =>"todo", :placeholder => "todo title"}
