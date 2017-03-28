@@ -8,10 +8,12 @@ class TaskList
     @title = title
     @description = description
     @tasks = []
+    @task_count = 0
   end
 
   def add_task(task_title)
-    @tasks << Task.new(task_title)
+    @tasks << Task.new(task_title, @task_count)
+    @task_count += 1
   end
 
   def ==(other)

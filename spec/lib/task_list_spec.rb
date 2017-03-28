@@ -18,6 +18,7 @@ RSpec.describe TaskList do
 
     subject.add_task("Example Task")
     expect(subject.tasks.first.title).to eq("Example Task")
+    expect(subject.tasks.first.id).to eq(0)
   end
 
   it "equality is based on state" do

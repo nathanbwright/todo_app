@@ -1,9 +1,10 @@
 class Task
-  attr_accessor :title
+  attr_accessor :title, :id
 
-  def initialize(title)
+  def initialize(title, id)
     @title = title
     @complete = false
+    @id = id
   end
 
   def done

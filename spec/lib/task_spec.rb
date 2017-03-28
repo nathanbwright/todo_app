@@ -1,29 +1,28 @@
 require_relative "../../lib/task"
 
 RSpec.describe Task do
-  it "has a title" do
-    subject = Task.new("Example Task")
+  let(:subject) { Task.new("Example Task", 1) }
 
+  it "has a title" do
     expect(subject.title).to eq("Example Task")
   end
 
-  it "knows that newly created tasks are not complete" do
-    subject = Task.new("Example Task")
+  it "has an id" do
+    expect(subject.id).to eq(1)
+  end
 
+  it "knows that newly created tasks are not complete" do
     expect(subject.completed?).to be false
   end
 
   it "can be completed" do
-    subject = Task.new("Example Task")
-
     subject.done
 
     expect(subject.completed?).to be true
   end
 
   it "equality is based on state" do
-    subject = Task.new("Example Title")
-    other_subject = Task.new("Example Title")
+    other_subject = Task.new("Example Task", 1)
 
     expect(subject).to eq(other_subject)
   end
