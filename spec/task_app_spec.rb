@@ -19,4 +19,17 @@ RSpec.describe TaskApp do
     expect(subject.tasks.first.title).to eq("Hello World")
     expect(persistor).to have_received(:write)
   end
+
+  it "automatically saves to disk when a task is marked as completed" do
+    persistor = spy("TaskListPersistor")
+    allow(persistor).to receive(:write)
+
+    subject = TaskApp.new(title: "Task App", file_name: "file_name", persistor: persistor)
+
+    subject.add_task("Hello World")
+    subject.toggle_completed(0)
+
+    expect(subject.tasks.first.completed?).to be true
+    expect(persistor).to have_received(:write).twice
+  end
 end

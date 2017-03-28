@@ -16,6 +16,11 @@ class TaskApp
     @persistor.write(@task_list)
   end
 
+  def toggle_completed(id)
+    @task_list.toggle_completed(id)
+    @persistor.write(@task_list)
+  end
+
   def tasks
     @task_list.tasks
   end

@@ -21,6 +21,15 @@ RSpec.describe TaskList do
     expect(subject.tasks.first.id).to eq(0)
   end
 
+  it "can mark a task as completed" do
+    subject = TaskList.new("Example Title")
+
+    subject.add_task("Example Task")
+    subject.toggle_completed("0")
+
+    expect(subject.tasks.first.completed?).to be true
+  end
+
   it "equality is based on state" do
     subject = TaskList.new("Example Title", "Example Description")
     other_subject = TaskList.new("Example Title", "Example Description")

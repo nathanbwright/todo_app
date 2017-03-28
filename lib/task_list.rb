@@ -16,6 +16,11 @@ class TaskList
     @task_count += 1
   end
 
+  def toggle_completed(id)
+    task_id = Integer(id)
+    @tasks[task_id].toggle_completed
+  end
+
   def ==(other)
     other.is_a?(TaskList) &&
       @title == other.title &&
