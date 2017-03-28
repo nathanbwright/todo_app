@@ -1,9 +1,20 @@
 %html
   %head
-    %title Todo List
+    %title= task_list_title
+    %link{:rel => "stylesheet", :href => "/css/styles.css"}
   %body
-    %h1 Todo List
-    = foo
+    %h1= task_list_title
+    - task_list.each do |task|
+      %div{:class => "#{task.completed?}"}
+        %form{:method => "post", :action => "/toggle_complete/#{task.id}", :style => "display: inline;"}
+          - case task.completed?
+          - when true
+            %span &check; #{task.title}
+            %input{:type => "submit", :value => "Mark unDone"}
+          - when false
+            %span #{task.title}
+            %input{:type => "submit", :value => "Mark Done"}
+    %br
     %form{:method => "post", :action => "/new-todo"}
       %input{:type => "text", :name =>"todo", :placeholder => "todo title"}
       %input{:type => "submit"}
