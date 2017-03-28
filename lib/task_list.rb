@@ -17,8 +17,15 @@ class TaskList
   end
 
   def toggle_completed(id)
+    task = find_task_by_id(id)
+    task.toggle_completed
+  end
+
+  def find_task_by_id(id)
     task_id = Integer(id)
-    @tasks[task_id].toggle_completed
+    @tasks.detect do |task_obj|
+      task = task_obj if task_obj.id == task_id
+    end
   end
 
   def ==(other)

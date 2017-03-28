@@ -30,6 +30,16 @@ RSpec.describe TaskList do
     expect(subject.tasks.first.completed?).to be true
   end
 
+  it "tasks can be found by id" do
+    subject = TaskList.new("Example Title")
+
+    subject.add_task("Example 0")
+    subject.add_task("Example 1")
+    subject.add_task("Example 2")
+
+    expect(subject.find_task_by_id(1).title).to eq("Example 1")
+  end
+
   it "equality is based on state" do
     subject = TaskList.new("Example Title", "Example Description")
     other_subject = TaskList.new("Example Title", "Example Description")
