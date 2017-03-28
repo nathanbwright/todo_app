@@ -28,6 +28,11 @@ class TaskList
     end
   end
 
+  def delete_task(id)
+    task = find_task_by_id(id)
+    @tasks.delete(task)
+  end
+
   def ==(other)
     other.is_a?(TaskList) &&
       @title == other.title &&

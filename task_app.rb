@@ -30,6 +30,11 @@ class TaskApp
     @persistor.write(@task_list)
   end
 
+  def delete(id)
+    @task_list.delete_task(id)
+    @persistor.write(@task_list)
+  end
+
   def tasks
     @task_list.tasks
   end

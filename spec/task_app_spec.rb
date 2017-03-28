@@ -33,6 +33,19 @@ RSpec.describe TaskApp do
     expect(persistor).to have_received(:write).twice
   end
 
+  it "automatically saves to disk when a task is deleted" do
+    persistor = spy("TaskListPersistor")
+    allow(persistor).to receive(:write)
+
+    subject = TaskApp.new(title: "Task App", file_name: "file_name", persistor: persistor)
+
+    subject.add_task("Hello World")
+    subject.delete(0)
+
+    expect(subject.tasks).to eq([])
+    expect(persistor).to have_received(:write).twice
+  end
+
   it "can initialize from a file" do
     persistor = instance_double("TaskListPersistor")
     task_list = TaskList.new("Example Title")

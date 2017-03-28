@@ -40,6 +40,15 @@ RSpec.describe TaskList do
     expect(subject.find_task_by_id(1).title).to eq("Example 1")
   end
 
+  it "tasks can be deleted" do
+    subject = TaskList.new("Example Title")
+
+    subject.add_task("Task 0")
+    subject.delete_task(0)
+
+    expect(subject.tasks).to eq([])
+  end
+
   it "equality is based on state" do
     subject = TaskList.new("Example Title", "Example Description")
     other_subject = TaskList.new("Example Title", "Example Description")
