@@ -1,6 +1,6 @@
 .false {
-  padding-left: 1em;
 }
-.true {
+.true p {
   text-decoration: line-through;
+  color: #aaaaaa;
 }
