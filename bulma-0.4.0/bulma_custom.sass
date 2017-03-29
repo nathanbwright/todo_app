@@ -1,0 +1,36 @@
+// Import Bulma's initial variables
+@import "sass/utilities/_all.sass"
+
+// Override initial variables here
+// You can add new ones or update existing ones:
+
+$blue: #72d0eb // Update blue
+$pink: #ffb3b3 // Add pink
+$family-serif: "Georgia", serif // Add a serif family
+
+// Override generated variables here
+// For example, by default, the $danger color is $red and the font is sans-serif
+// You can change these values:
+
+$danger: $orange // Use the existing orange
+// $family-primary: $family-serif // Use the new serif family
+
+@import "bulma"
+
+form
+  margin-bottom: 0
+
+.card
+  margin-bottom: 1.25rem
+
+.card.true
+  box-shadow: none
+
+.icon
+  margin: 0 .25em
+  width: auto
+
+button.button
+  line-height: 1.25
+  span:first-child
+    padding-top: .05em
