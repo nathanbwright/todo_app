@@ -29,6 +29,25 @@ RSpec.describe TaskApp do
     end
   end
 
+  context "information about it's tasks" do
+    let(:subject) { TaskApp.new(title: "Task App", file_name: "file_name", persistor: persistor) }
+    let(:persistor) { spy("TaskListPersistor") }
+
+    before(:each) do
+      allow(persistor).to receive(:write)
+    end
+
+    it "knows if any tasks have been completed" do
+      subject.add_task("Hello World")
+
+      expect(subject.any_completed?).to be_falsy
+
+      subject.toggle_completed("0")
+
+      expect(subject.any_completed?).to be_truthy
+    end
+  end
+
   context "automatically saves itself in different situations" do
     let(:subject) { TaskApp.new(title: "Task App", file_name: "file_name", persistor: persistor) }
     let(:persistor) { spy("TaskListPersistor") }

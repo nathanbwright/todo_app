@@ -58,6 +58,16 @@ RSpec.describe TaskList do
       expect(subject.tasks).to eq([])
     end
 
+    it "know if any of its tasks have been completed" do
+      subject.add_task("Task 0")
+
+      expect(subject.any_completed?).to be_falsy
+
+      subject.toggle_completed("0")
+
+      expect(subject.any_completed?).to be_truthy
+    end
+
     it "all completed tasks can be deleted" do
       subject.add_task("Task 0")
       subject.add_task("Task 1")
