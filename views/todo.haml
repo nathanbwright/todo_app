@@ -1,0 +1,21 @@
+.card{:class => "#{task.completed? ? 'true' : 'false'}" }
+  %header.card-header
+    .card-header-title
+      %span.icon
+        %form{:method => "post", :action => "/toggle_complete/#{task.id}"}
+          - case task.completed?
+          - when true
+            %button{:type => "submit", :value => "Undo", :title => "Mark as not complete", :class => "button is-small is-outlined"}
+              %span.icon.is-small
+                %i.fa.fa-check-circle-o
+          - when false
+            %button{:type => "submit", :value => "Done", :title => "Mark as complete", :class => "button is-small"}
+              %span.icon.is-small
+                %i.fa.fa-circle-o
+      %p #{task.title}
+    .card-header-icon
+      %span.icon
+        %form{:method => "post", :action => "/delete/#{task.id}", :class => "card-footer-item"}
+          %button{:type => "submit", :value => "Delete", :title => "Delete Task", :class => "button is-small is-danger is-outlined"}
+            %span.icon.is-small
+              %i.fa.fa-times

@@ -12,37 +12,11 @@
             %h1.title= task_list_title
       .columns
         .column.is-half.is-offset-one-quarter
+          = partial :new_todo
+      .columns
+        .column.is-half.is-offset-one-quarter
           - task_list.each do |task|
-            .card{:class => "#{task.completed? ? 'true' : 'false'}" }
-              %header.card-header
-                .card-header-title
-                  %span.icon
-                    %form{:method => "post", :action => "/toggle_complete/#{task.id}"}
-                      - case task.completed?
-                      - when true
-                        %button{:type => "submit", :value => "Undo", :title => "Mark as not complete", :class => "button is-small is-outlined"}
-                          %span.icon.is-small
-                            %i.fa.fa-check-circle-o
-                      - when false
-                        %button{:type => "submit", :value => "Done", :title => "Mark as complete", :class => "button is-small"}
-                          %span.icon.is-small
-                            %i.fa.fa-circle-o
-                  %p #{task.title}
-                .card-header-icon
-                  %span.icon
-                    %form{:method => "post", :action => "/delete/#{task.id}", :class => "card-footer-item"}
-                      %button{:type => "submit", :value => "Delete", :title => "Delete Task", :class => "button is-small is-danger is-outlined"}
-                        %span.icon.is-small
-                          %i.fa.fa-times
+            = partial :todo, locals: {task: task}
       .columns
         .column.is-half.is-offset-one-quarter
-          %form{:method => "post", :action => "/delete_completed", :class => "is-pulled-right"}
-            %button{:type => "submit", :value => "Delete completed tasks", :title => "Delete completed tasks", :class => "button is-small is-danger is-outlined"}
-              Delete all completed tasks
-      .columns
-        .column.is-half.is-offset-one-quarter
-          %form{:method => "post", :action => "/new-todo", :class => "field has-addons has-addons-centered"}
-            %p.control
-              %input{:type => "text", :name =>"todo", :placeholder => "Task title", :class => "input"}
-            %p.control
-              %input{:type => "submit", :value => "Add Task", :class => "button is-primary"}
+          = partial :delete_completed
