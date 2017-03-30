@@ -25,3 +25,8 @@ post "/delete/:id" do
   task_app.delete(params[:id])
   redirect back
 end
+
+post "/delete_completed" do
+  task_app.delete_completed_tasks
+  redirect back
+end

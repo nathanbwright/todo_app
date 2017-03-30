@@ -36,6 +36,11 @@
                           %i.fa.fa-times
       .columns
         .column.is-half.is-offset-one-quarter
+          %form{:method => "post", :action => "/delete_completed", :class => "is-pulled-right"}
+            %button{:type => "submit", :value => "Delete completed tasks", :title => "Delete completed tasks", :class => "button is-small is-danger is-outlined"}
+              Delete all completed tasks
+      .columns
+        .column.is-half.is-offset-one-quarter
           %form{:method => "post", :action => "/new-todo", :class => "field has-addons has-addons-centered"}
             %p.control
               %input{:type => "text", :name =>"todo", :placeholder => "Task title", :class => "input"}
