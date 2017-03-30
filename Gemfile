@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
 gem "sinatra", github: "sinatra/sinatra"
+gem "sinatra-partial"
 gem "haml"
 
 group :development, :test do

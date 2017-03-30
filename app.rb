@@ -1,4 +1,5 @@
 require "sinatra"
+require 'sinatra/partial'
 require "haml"
 
 require_relative "./task_app"
