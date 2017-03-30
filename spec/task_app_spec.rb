@@ -27,7 +27,7 @@ RSpec.describe TaskApp do
     subject = TaskApp.new(title: "Task App", file_name: "file_name", persistor: persistor)
 
     subject.add_task("Hello World")
-    subject.toggle_completed(0)
+    subject.toggle_completed("0")
 
     expect(subject.tasks.first.completed?).to be true
     expect(persistor).to have_received(:write).twice
@@ -40,7 +40,7 @@ RSpec.describe TaskApp do
     subject = TaskApp.new(title: "Task App", file_name: "file_name", persistor: persistor)
 
     subject.add_task("Hello World")
-    subject.delete(0)
+    subject.delete("0")
 
     expect(subject.tasks).to eq([])
     expect(persistor).to have_received(:write).twice

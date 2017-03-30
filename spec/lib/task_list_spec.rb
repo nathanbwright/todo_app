@@ -44,7 +44,7 @@ RSpec.describe TaskList do
     subject = TaskList.new("Example Title")
 
     subject.add_task("Task 0")
-    subject.delete_task(0)
+    subject.delete_task("0")
 
     expect(subject.tasks).to eq([])
   end
