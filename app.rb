@@ -9,7 +9,7 @@ TASKS_FILE = "tasks.yaml"
 task_app = TaskApp.from_file(file_name: TASKS_FILE)
 
 get "/" do
-  haml :index, :locals => {:task_list_title => task_app.title, :task_list => task_app.tasks}
+  haml :index, :locals => {:task_app => task_app}
 end
 
 post "/new-todo" do

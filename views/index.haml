@@ -1,6 +1,6 @@
 %html
   %head
-    %title= task_list_title
+    %title= task_app.title
     %link{:rel => "stylesheet", :href => "/css/font-awesome.min.css"}
     %link{:rel => "stylesheet", :href => "/css/bulma_custom.css"}
     %link{:rel => "stylesheet", :href => "/css/styles.css"}
@@ -9,14 +9,15 @@
       .columns
         .column.is-half.is-offset-one-quarter
           .heading.has-text-centered
-            %h1.title= task_list_title
+            %h1.title= task_app.title
       .columns
         .column.is-half.is-offset-one-quarter
           = partial :new_todo
       .columns
         .column.is-half.is-offset-one-quarter
-          - task_list.each do |task|
+          - task_app.tasks.each do |task|
             = partial :todo, locals: {task: task}
       .columns
         .column.is-half.is-offset-one-quarter
-          = partial :delete_completed
+          - if task_app.any_completed?
+            = partial :delete_completed
