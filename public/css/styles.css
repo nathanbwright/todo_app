@@ -4,3 +4,6 @@
   text-decoration: line-through;
   color: #aaaaaa;
 }
+.card-header-title .icon {
+  margin: 0 0.75em 0 0;
+}
