@@ -33,6 +33,12 @@ class TaskList
     @tasks.delete(task)
   end
 
+  def delete_completed_tasks
+    @tasks = @tasks.reject do |task|
+      task.completed?
+    end
+  end
+
   def ==(other)
     other.is_a?(TaskList) &&
       @title == other.title &&

@@ -49,6 +49,23 @@ RSpec.describe TaskList do
     expect(subject.tasks).to eq([])
   end
 
+  it "all completed tasks can be deleted" do
+    subject = TaskList.new("Example Title")
+
+    subject.add_task("Task 0")
+    subject.toggle_completed("0")
+
+    subject.add_task("Task 1")
+
+    subject.add_task("Task 2")
+    subject.toggle_completed("2")
+
+    subject.delete_completed_tasks
+
+    expect(subject.tasks.first.title).to eq("Task 1")
+    expect(subject.tasks.size).to eq(1)
+  end
+
   it "equality is based on state" do
     subject = TaskList.new("Example Title", "Example Description")
     other_subject = TaskList.new("Example Title", "Example Description")
