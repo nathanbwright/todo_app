@@ -10,6 +10,8 @@
         .column.is-half.is-offset-one-quarter
           .heading.has-text-centered
             %h1.title= task_app.title
+            - if task_app.tasks.any?
+              %h3= "#{task_app.completed_tasks.size} of #{task_app.tasks.size} tasks completed."
       .columns
         .column.is-half.is-offset-one-quarter
           = partial :new_todo
