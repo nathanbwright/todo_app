@@ -4,7 +4,7 @@ require "haml"
 
 require_relative "./task_app"
 
-TASKS_FILE = "tasks.yaml"
+TASKS_FILE = ARGV.first || "tasks.yaml"
 
 task_app = TaskApp.from_file(file_name: TASKS_FILE)
 
