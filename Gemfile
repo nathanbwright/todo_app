@@ -9,4 +9,7 @@ group :development, :test do
   gem "rack-test", require: "rack/test"
   gem "byebug"
   gem "rerun"
+  gem "cucumber"
+  gem "cucumber-sinatra"
+  gem "capybara"
 end
