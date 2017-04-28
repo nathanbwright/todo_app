@@ -5,8 +5,12 @@ require File.join(File.dirname(__FILE__), '..', '..', 'app.rb')
 require 'capybara'
 require 'capybara/cucumber'
 require 'rspec'
+require 'tempfile'
 
-Capybara.app = Sinatra::Application.new
+tempfile = Tempfile.new('foo')
+App::TASKS_FILE = tempfile
+
+Capybara.app = App
 
 class AppWorld
   include Capybara::DSL
