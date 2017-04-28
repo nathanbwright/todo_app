@@ -46,6 +46,20 @@ RSpec.describe TaskApp do
 
       expect(subject.any_completed?).to be_truthy
     end
+
+    it "know which tasks have been completed" do
+      subject.add_task("Task 0")
+      subject.add_task("Task 1")
+      subject.add_task("Task 2")
+
+      expect(subject.completed_tasks).to eq([])
+
+      subject.toggle_completed("0")
+
+      expect(subject.completed_tasks.size).to eq(1)
+      expect(subject.completed_tasks.first.title).to eq("Task 0")
+    end
+
   end
 
   context "automatically saves itself in different situations" do

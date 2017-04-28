@@ -34,6 +34,10 @@ class TaskApp
     @task_list.any_completed?
   end
 
+  def completed_tasks
+    @task_list.completed_tasks
+  end
+
   def delete(id)
     @task_list.delete_task(id)
     @persistor.write(@task_list)

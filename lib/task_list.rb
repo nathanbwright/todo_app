@@ -32,6 +32,10 @@ class TaskList
     @tasks.any? { |task| task.completed? }
   end
 
+  def completed_tasks
+    @tasks.select { |task| task.completed? }
+  end
+
   def delete_task(id)
     task = find_task_by_id(id)
     @tasks.delete(task)
