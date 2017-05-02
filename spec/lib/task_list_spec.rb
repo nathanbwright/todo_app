@@ -43,14 +43,6 @@ RSpec.describe TaskList do
       expect(subject.tasks.first.completed?).to be true
     end
 
-    it "tasks can be found by id" do
-      subject.add_task("Example 0")
-      subject.add_task("Example 1")
-      subject.add_task("Example 2")
-
-      expect(subject.find_task_by_id("1").title).to eq("Example 1")
-    end
-
     it "tasks can be deleted" do
       subject.add_task("Task 0")
       subject.delete_task("0")
@@ -68,30 +60,36 @@ RSpec.describe TaskList do
       expect(subject.any_completed?).to be_truthy
     end
 
-    it "know which tasks have been completed" do
-      subject.add_task("Task 0")
-      subject.add_task("Task 1")
-      subject.add_task("Task 2")
+    context "with multiple tasks" do
 
-      expect(subject.completed_tasks).to eq([])
+      before(:each) do
+        subject.add_task("Task 0")
+        subject.add_task("Task 1")
+        subject.add_task("Task 2")
+      end
 
-      subject.toggle_completed("0")
+      it "tasks can be found by id" do
+        expect(subject.find_task_by_id("1").title).to eq("Task 1")
+      end
 
-      expect(subject.completed_tasks.size).to eq(1)
-      expect(subject.completed_tasks.first.title).to eq("Task 0")
-    end
+      it "know which tasks have been completed" do
+        expect(subject.completed_tasks).to eq([])
 
-    it "all completed tasks can be deleted" do
-      subject.add_task("Task 0")
-      subject.add_task("Task 1")
-      subject.add_task("Task 2")
-      subject.toggle_completed("0")
-      subject.toggle_completed("2")
+        subject.toggle_completed("0")
 
-      subject.delete_completed_tasks
+        expect(subject.completed_tasks).to match([an_object_having_attributes(title: "Task 0")])
+        expect(subject.completed_tasks.size).to eq(1)
+      end
 
-      expect(subject.tasks.first.title).to eq("Task 1")
-      expect(subject.tasks.size).to eq(1)
+      it "all completed tasks can be deleted" do
+        subject.toggle_completed("0")
+        subject.toggle_completed("2")
+
+        subject.delete_completed_tasks
+
+        expect(subject.tasks).to match([an_object_having_attributes(title: "Task 1")])
+        expect(subject.tasks.size).to eq(1)
+      end
     end
   end
 
