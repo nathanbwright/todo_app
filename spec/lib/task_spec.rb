@@ -24,8 +24,10 @@ RSpec.describe Task do
   end
 
   it "equality is based on state" do
-    other_subject = Task.new("Example Task", 1)
+    same_id = Task.new("Example Task", 1)
+    different_id = Task.new("Example Task", 2)
 
-    expect(subject).to eq(other_subject)
+    expect(subject).to eq(same_id)
+    expect(subject).not_to eq(different_id)
   end
 end

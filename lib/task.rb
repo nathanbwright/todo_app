@@ -18,6 +18,7 @@ class Task
   def ==(other)
     other.is_a?(Task) &&
       @title == other.title &&
-      @complete == other.completed?
+      @complete == other.completed? &&
+      @id == other.id
   end
 end
